@@ -1,0 +1,12 @@
+1) Bean
+2) Autowired
+3) modelMapper
+4) valid
+5) Service
+6) JpaRepository
+7) RequestBody
+8) StatusCode
+9) Streams
+10) Lambda
+11) @OneToMany @ManyToOne and its arguments
+12) @JoinColumn
