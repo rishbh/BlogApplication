@@ -10,3 +10,56 @@
 10) Lambda
 11) @OneToMany @ManyToOne and its arguments
 12) @JoinColumn
+
+13) Instaed of orderBy=="descenind" write the orderBy.equals("descending") ///////////// Mistake
+
+14)Good practise while using hard codedd valeus like page size and page number we can use conatsnts in place of themafter making
+config directory and AppCostants ........
+
+13)
+14)
+
+
+
+
+JWT authentication Implementations
+
+
+1 ) Add the dependency jwt in maven
+<!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
+<dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt</artifactId>
+    <version>0.9.1</version>
+</dependency>
+
+
+2) create class  JWTauthenticatoion Entry Point
+   here a method commence() which called when an unauthorised person accesses API
+   so sends the error in the response
+
+3) tokenHelper
+    1) Validate the token :-
+
+           1) check the useername from the token and from the user credentials
+           2) token is not out of date
+
+    2) generate the token :-
+
+        1) Set the claims , set the subject , expiration date and all that
+
+
+4) JWTAuthentication Filter :
+    get the token and the username ,see remove the Bearer from the token first and then store it as token
+    3 types of exceptions may come
+    1) malformed Token
+    2)
+
+    Once we get the token and username --> validates it->
+    set SecurityContext(authenticationObject whci we make)
+
+5) Now try to make the controllers
+
+
+
+

@@ -1,11 +1,10 @@
 package com.blogapplication.blog.controllers;
 
 
+import com.blogapplication.blog.services.implementation.userServiceImpl;
 import com.blogapplication.blog.entities.APIResponse;
 import com.blogapplication.blog.payloads.UserDTO;
-import com.blogapplication.blog.services.implementation.userServiceImpl;
 import jakarta.validation.Valid;
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -51,6 +50,7 @@ public class UserController {
        }
        @GetMapping("/")
        public ResponseEntity<List<UserDTO>> getAllUsers(){
+              System.out.println("Hello");
               return new ResponseEntity(this.userService.getAllUsers(),HttpStatusCode.valueOf(200));
        }
 

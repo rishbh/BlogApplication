@@ -1,18 +1,17 @@
 package com.blogapplication.blog.entities;
 
-import com.blogapplication.blog.payloads.UserDTO;
-import com.blogapplication.blog.payloads.categoryDTO;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import jdk.jfr.Category;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.repository.cdi.Eager;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -42,11 +41,16 @@ public class Post {
 
 
     @ManyToOne
-    @JoinColumn(name="postUserId")
+    @NotNull
+//    @JoinColumn(name="postUserId")
     private User postUser;
 
     @ManyToOne
-    @JoinColumn(name="postCategoryId")
+    @NotNull
+   // @JoinColumn(name="postCategoryId")
     private category postCategory;
 
+
+    @OneToMany(mappedBy = "post",cascade = CascadeType.ALL)
+    private Set<Comment> comments=new HashSet<>();
 }

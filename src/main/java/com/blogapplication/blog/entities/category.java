@@ -13,14 +13,13 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-
 @Entity
 @Table
 public class category {
 
-             @Id
-             @GeneratedValue(strategy= GenerationType.IDENTITY)
-          private   Integer categoryId;
+                 @Id
+                 @GeneratedValue(strategy= GenerationType.IDENTITY)
+              private   Integer categoryId;
 
 
           @NotNull
