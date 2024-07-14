@@ -29,6 +29,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         System.out.println(" coming in the  doFlterInternal fn ");
+        System.out.println(" Request comes is "+request.toString());
         // token came in the form of Bearer 45Swe567Dfgfwikhek
 
         String path ="/api/v1/auth/login";
@@ -45,6 +46,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
 
         if(requestToken!=null && requestToken.startsWith("Bearer")){
             token = requestToken.substring(7);
+            System.out.println(" now actual token is "+token);
             try{
                 username= this.jwtTokenHelper.getUsernameFromToken(token);
                 System.out.println(" username that came is "+username);
@@ -59,12 +61,13 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
 
 
         }else{
+            if(requestToken==null)System.out.println("Request toekn is null");
+            else
             System.out.println(" token does not start with Bearer ");
         }
 
         // Once we get the token -->then validate it
            if( username!=null && SecurityContextHolder.getContext().getAuthentication()==null){
-               username+="@gmail.com";
                UserDetails  userDetails = this.userDetailsService.loadUserByUsername(username);
 
                System.out.println(" userDetails fetched successfully from the   userDetailsService "+ userDetails.getUsername());

@@ -7,6 +7,8 @@ import com.blogapplication.blog.security.JWTtokenHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+
+import com.blogapplication.blog.config.SecurityConfig.*;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -49,7 +51,8 @@ public class authController {
     }
 
     private void authenticate(String username, String password) throws Exception {
-
+        String userName = username;
+        System.out.println("Username that came isa "+username);
         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(username,password);
         try{
             System.out.println(" doing authentication here !!");
