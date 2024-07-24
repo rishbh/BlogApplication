@@ -1,6 +1,5 @@
 # BlogApplication
-Building a blog application where user can do CRUD operations in very easy and efficient manner
-1) While creating a post repo keep in mind the query methods 
-2) {findBy<here wirte the property variable name defined in the POST entity fior eg write here PostCategory not
-   categoryto db mein postCategory ke name se search krega
-> }
+Blog Application with Spring Boot and JWT Authentication :A robust blog application where user can do CRUD operations in very easy and efficient manner 
+Overview
+This project is a robust blog application built using Spring Boot and secured with JWT (JSON Web Token) authentication. It enables users to create, manage, and interact with blog content securely. The application is designed with a focus on modularity, security, and ease of use.
+
