@@ -2,3 +2,8 @@ spring security :-
 
 username:
 password :
+
+The password used in the mysQL for the username  abc24@gmail.com is "xyz" which get encoded and
+saved in the db , so while hitiing postman for getting the token we should use the creds as :
+1) username : abc24@gmail.com
+2) password: xyz
