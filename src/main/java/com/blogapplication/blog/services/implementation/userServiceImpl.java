@@ -5,6 +5,8 @@ import com.blogapplication.blog.exceptions.ResourceNotFoundException;
 import com.blogapplication.blog.payloads.UserDTO;
 import com.blogapplication.blog.repositories.UserRepo;
 import com.blogapplication.blog.services.userService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,10 @@ import java.util.stream.Collectors;
 
 @Service
 public class userServiceImpl implements userService {
+
+    Logger logger= LogManager.getLogger(userServiceImpl.class);
+
+
 
     @Autowired
     private UserRepo userRepo ;
@@ -26,6 +32,7 @@ public class userServiceImpl implements userService {
         User newUser= UserDTOtoUser(userDTO);
 
         User savedUser=this.userRepo.save(newUser);
+        logger.info("User saved in the Database with userID: "+userDTO.getId());
         UserDTO savedUserDTO=this.UsertoUserDTO(savedUser);
 
         return  savedUserDTO;
@@ -42,6 +49,7 @@ public class userServiceImpl implements userService {
         user.setPassword(userDTO.getPassword());
 
         User updatedUser=this.userRepo.save(user);
+        logger.info("The user details got updated in the database with integer id as : "+ id);
 
         return this.UsertoUserDTO(updatedUser);
     }
@@ -51,13 +59,14 @@ public class userServiceImpl implements userService {
            List<User> allUsers=this.userRepo.findAll();
 
            List<UserDTO>alluserDTO=allUsers.stream().map(user->this.UsertoUserDTO(user)).collect(Collectors.toList());
+           logger.info("All the users fetched successfully");
         return alluserDTO;
     }
 
     @Override
     public UserDTO getUserById(Integer userId) {
         User user=this.userRepo.findById(userId).orElseThrow(()->new ResourceNotFoundException("User","Id",userId));
-
+        logger.info("USer with the id "+userId+" fetched successfully ");
         return this.UsertoUserDTO(user);
     }
 
@@ -67,6 +76,7 @@ public class userServiceImpl implements userService {
 
         if(user!=null){
             userRepo.delete(user);
+            logger.info("User with the userID "+userId+" deleted successfully");
         }else{
            // System.out.println("User can not be deleted");
         }
